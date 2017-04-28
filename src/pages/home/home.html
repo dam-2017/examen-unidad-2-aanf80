@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Iniciar Sesión
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="myForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label>Usuario</ion-label>
+      <ion-input type="text" formControlName="user" placeholder="arannavarrofl"></ion-input>
+    </ion-item>
+    <p *ngIf="user.hasError('required') && user.touched" color="danger" padding-left>El usuario es requerido</p>
+    <p *ngIf="myForm.get('user').hasError('minlength')">Mínimo 6 caracteres</p>
+    <p *ngIf="user.hasError('pattern') && user.touched" color="danger" padding-left>Solo letras minúsculas</p>
+    <ion-item>
+      <ion-label>Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <p *ngIf="password.hasError('required') && password.touched" color="danger" padding-left>La contraseña es requerida</p>
+    <p *ngIf="password.hasError('pattern') && password.touched" color="danger" padding-left>La contraseña debe contener al menos uno de estos simbolos: |@#%& </p>
+    <p *ngIf="myForm.get('password').hasError('minlength')">Mínimo 8 caracteres</p>
+    <p *ngIf="valida" color="danger" padding-left>Correo y/o contraseña incorrectos</p>
+
+    <button ion-button>Iniciar Sesión</button>
+  </form>
+
+</ion-content>
